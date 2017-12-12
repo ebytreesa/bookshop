@@ -1,0 +1,39 @@
+<?php $__env->startSection('title'); ?>
+	Bags
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="container">
+<h1>Bags</h1>
+
+<table class="table">
+	<tr>
+		<th>#</th>
+		<th>Name</th>
+		<th>Image</th>
+		<th>Description</th>
+		<th>Price</th>
+		<th>Ret</th>
+		<th>Slet</th>
+		
+	</tr>
+	<?php foreach($bags as $bag): ?>
+		<tr>
+			<td><?php echo $bag->id; ?></td>
+			<td><?php echo $bag->title; ?> </td>
+			<td><img src="/bags/<?php echo $bag->image; ?>" style="height:50px; width:50px;"><br>
+			<td><?php echo $bag->description; ?> </td>
+						
+			<td><?php echo $bag->price; ?></td>
+			
+				<td><a href="/admin/editBag/<?php echo $bag->id; ?>" class="btn btn-primary btn-xs">RET</a></td>
+			<td><a href="/admin/deleteBag/<?php echo $bag->id; ?>" class="btn btn-danger btn-xs">SLET</a></td>
+			
+		</tr>
+	<?php endforeach; ?>
+
+</table>
+<a href="/admin/addBag" class="btn btn-primary ">Add Ny</a>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

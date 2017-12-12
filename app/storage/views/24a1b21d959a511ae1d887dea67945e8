@@ -1,0 +1,39 @@
+<?php $__env->startSection('title'); ?>
+	Book list
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="container">
+<h1>Book</h1>
+
+<table class="table">
+	<tr>
+		<th>#</th>
+		<th>Author</th>
+		<th>Title</th>
+		<th>Cover</th>
+		<th>Price</th>
+		<th>Ret</th>
+		<th>Slet</th>
+		
+	</tr>
+	<?php foreach($books as $book): ?>
+		<tr>
+			<td><?php echo $book->id; ?></td>
+			<td><?php echo $book->author->lastname; ?> <?php echo $book->author->firstname; ?></td>
+			
+			<td><a  href="/admin/<?php echo $book->name; ?>/list"><?php echo $book->title; ?></a></td>
+			<td><img src="/books/<?php echo $book->coverImg; ?>" style="height:50px; width:50px;"><br>
+			<td><?php echo $book->price; ?></td>
+			
+				<td><a href="/admin/editBook/<?php echo $book->id; ?>" class="btn btn-primary btn-xs">RET</a></td>
+			<td><a href="/admin/deleteBook/<?php echo $book->id; ?>" class="btn btn-danger btn-xs">SLET</a></td>
+			
+		</tr>
+	<?php endforeach; ?>
+
+</table>
+<a href="/admin/addBook" class="btn btn-primary ">Add Ny</a>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

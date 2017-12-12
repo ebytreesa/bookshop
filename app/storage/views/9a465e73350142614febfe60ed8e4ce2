@@ -1,0 +1,34 @@
+<?php $__env->startSection('title'); ?>
+	Authors list
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="container">
+<h1>Author</h1>
+
+<table class="table">
+	<tr>
+		<th>#</th>
+		<th>firstname</th>
+		<th>lastname</th>
+		<th>Ret</th>
+		<th>Slet</th>
+		
+	</tr>
+	<?php foreach($authors as $author): ?>
+		<tr>
+			<td><?php echo $author->id; ?></td>
+			<td><?php echo $author->firstname; ?></td>
+			<td><?php echo $author->lastname; ?></td>
+			
+			<td><a href="/admin/editAuthor/<?php echo $author->id; ?>" class="btn btn-primary btn-xs">RET</a></td>
+			<td><a href="/admin/deleteAuthor/<?php echo $author->id; ?>" class="btn btn-danger btn-xs">SLET</a></td>
+			
+		</tr>
+	<?php endforeach; ?>
+
+</table>
+<a href="/admin/addAuthor" class="btn btn-primary ">Add Ny</a>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,68 @@
+<?php $__env->startSection('title'); ?>
+add bag
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="container" style="width:70%;">
+<h1>Ny Bag</h1>
+
+
+<?php echo Form::open(array('route' => 'postAddBag', 'files' => true)); ?>
+
+		<div class="form-group <?php echo ($errors->has('title')) ? 'has-error' : ''; ?>">
+		<?php echo Form::label('Name'); ?>
+
+		<?php echo Form::text('title', '', array('class' => 'form-control', 'required' => 'required')); ?>
+
+		<?php if($errors->has('title')): ?>
+			<strong>
+				<?php echo $errors->first('title'); ?>
+
+			</strong>
+		<?php endif; ?>		
+
+		</div>
+		<br>
+
+		<div class="form-group <?php echo ($errors->has('description')) ? 'has-error' : ''; ?>">
+		<?php echo Form::label('Description'); ?>
+
+		<?php echo Form::text('description', '', array('class' => 'form-control', 'required' => 'required')); ?>
+
+		<?php if($errors->has('description')): ?>
+			<strong>
+				<?php echo $errors->first('description'); ?>
+
+			</strong>
+		<?php endif; ?>
+		</div>
+		<br>
+
+		<div class="form-group <?php echo ($errors->has('price')) ? 'has-error' : ''; ?>">
+		<?php echo Form::label('Price'); ?>
+
+		<?php echo Form::text('price', '', array('class' => 'form-control', 'required' => 'required')); ?>
+
+		<?php if($errors->has('price')): ?>
+			<strong>
+				<?php echo $errors->first('price'); ?>
+
+			</strong>
+		<?php endif; ?>
+		</div>
+		<br>
+
+		<?php echo Form::label('Picture'); ?>
+
+		<?php echo Form::file('pic'); ?>
+
+	<br>
+
+		<?php echo Form::submit('Add', array('class' => 'btn btn-primary')); ?>
+
+<?php echo Form::close(); ?>
+
+
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

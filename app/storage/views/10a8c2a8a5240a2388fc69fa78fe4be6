@@ -1,0 +1,46 @@
+<?php $__env->startSection('title'); ?>
+	<?php echo $product->title; ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="a" style="padding-left:50px;">
+<h1><?php echo $product->title; ?></h1>
+
+	
+		<div class="col-sm-2" style="padding:30px;">	
+			<img class="img-responsive" src="/images/<?php echo $product->coverImg; ?>"><br>
+			<p><b><?php echo $product->description; ?> </b></p>
+
+		</div>
+
+		<div class="col-sm-2" style="padding:30px;">	
+			<p>Price<strong> <?php echo $product->price; ?>kr.</strong></p>
+			<?php echo Form::open(array('route' => 'addToCart')); ?>
+
+			<?php echo Form::hidden('id', $product->id); ?>
+
+			<?php echo Form::hidden('price', $product->price); ?>
+
+               
+                <select name="amount" style="width: 100%;">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select><br><br>
+                <?php echo Form::submit('Add to Cart', array('class' => 'btn btn-primary')); ?>
+
+             
+            <?php echo Form::close(); ?>
+
+
+		</div>		
+	
+
+
+
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

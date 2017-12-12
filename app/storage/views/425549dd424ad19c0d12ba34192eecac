@@ -1,0 +1,42 @@
+<?php $__env->startSection('title'); ?>
+	Product list
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="container">
+<h1>Products</h1>
+
+<table class="table">
+	<tr>
+		<th>#</th>
+		<th>Title</th>
+		<th>Image</th>
+		<th>Category</th>
+		<th>Subcategory</th>
+		<th>Description</th>
+		<th>Price</th>
+		<th>Ret</th>
+		<th>Slet</th>
+		
+	</tr>
+	<?php foreach($products as $product): ?>
+		<tr>
+			<td><?php echo $product->id; ?></td>
+			<td><a  href="/admin/<?php echo $product->name; ?>/list"><?php echo $product->title; ?></a></td>
+			<td><img src="/images/<?php echo $product->coverImg; ?>" style="height:50px; width:50px;"><br>
+			<td><?php echo $product->category->name; ?> </td>	
+			<td><?php echo $product->subcategory->name; ?> </td>		
+			<td><?php echo $product->description; ?> </td>	
+			<td><?php echo $product->price; ?></td>
+			
+				<td><a href="/admin/editProduct/<?php echo $product->id; ?>" class="btn btn-primary btn-xs">RET</a></td>
+			<td><a href="/admin/deleteProduct/<?php echo $product->id; ?>" class="btn btn-danger btn-xs">SLET</a></td>
+			
+		</tr>
+	<?php endforeach; ?>
+
+</table>
+<a href="/admin/addProduct" class="btn btn-primary ">Add Ny</a>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

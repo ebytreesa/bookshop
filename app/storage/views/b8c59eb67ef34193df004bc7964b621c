@@ -1,0 +1,47 @@
+<?php $__env->startSection('title'); ?>
+add author
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="container" style="width:70%;">
+<h1>Ny Author</h1>
+
+
+<?php echo Form::open(array('route' => 'postAddAuthor')); ?>
+
+		<div class="form-group <?php echo ($errors->has('firstname')) ? 'has-error' : ''; ?>">
+		<?php echo Form::label('First name'); ?>
+
+		<?php echo Form::text('firstname', '', array('class' => 'form-control', 'required' => 'required')); ?>
+
+		<?php if($errors->has('firstname')): ?>
+			<strong>
+				<?php echo $errors->first('firstname'); ?>
+
+			</strong>
+		<?php endif; ?>
+		</div>
+		<br>
+
+		<div class="form-group <?php echo ($errors->has('lastname')) ? 'has-error' : ''; ?>">
+		<?php echo Form::label('Last name'); ?>
+
+		<?php echo Form::text('lastname', '', array('class' => 'form-control', 'required' => 'required')); ?>
+
+		<?php if($errors->has('lastname')): ?>
+			<strong>
+				<?php echo $errors->first('lastname'); ?>
+
+			</strong>
+		<?php endif; ?>
+		</div>
+		<br>
+
+		<?php echo Form::submit('Add', array('class' => 'btn btn-primary')); ?>
+
+<?php echo Form::close(); ?>
+
+
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

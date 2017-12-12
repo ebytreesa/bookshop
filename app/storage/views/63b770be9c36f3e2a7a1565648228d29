@@ -1,0 +1,54 @@
+<?php $__env->startSection('title'); ?>
+profile
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="container" style="width:70%;">
+<h1>My profile</h1>
+
+<p>Username : <?php echo Auth::user()->username; ?></p>
+<p>Email : <?php echo Auth::user()->email; ?></p>
+<a href="/editProfile" class="btn btn-primary">Edit</a>
+<a href="/deleteProfile" class="btn btn-danger">Delete</a>
+<h3>Your Cart</h3>
+
+ <table class="table">
+    <tbody>
+      <tr>
+        <td><b>Title</b></td>
+        <td><b>Category</b></td>
+        <td><b>Image</b></td>
+        <td><b>Amount</b></td>
+        <td><b>Price</b></td>
+        <td><b>Total</b></td>
+        <?php /*  <td><b>Edit</b></td> */ ?>
+        <td><b>Delete</b></td>
+      </tr>
+
+      <?php foreach($cart as $cart_item): ?>
+        <tr>
+        <td><?php echo $cart_item->product->title; ?></td>
+         <td><?php echo $cart_item->product->category->name; ?></td>
+        <td><img src="/images/<?php echo $cart_item->product->coverImg; ?>" style="height:50px; width:50px;"><br>
+        <td><?php echo $cart_item->amount; ?></td>
+        <td><?php echo $cart_item->product->price; ?></td>
+        <td><?php echo $cart_item->total; ?></td>
+          <?php /* <td><a href="/profile/editCart/<?php echo $cart_item->id; ?>">Edit</a></td> */ ?>
+        <td><a href="/profile/deleteCart/<?php echo $cart_item->id; ?>">Delete</a></td>
+        </tr>
+      <?php endforeach; ?>
+      <tr>
+        <td></td>
+        <td></td>
+        <td><b>Total</b></td>
+        <?php
+        	$total = Cart::where('user_id', Auth::user()->id)->get()->sum('total');
+        	?>
+        <td><b><?php echo $total; ?></b></td>
+        <td></td>        
+      </tr>
+    </tbody>
+  </table>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

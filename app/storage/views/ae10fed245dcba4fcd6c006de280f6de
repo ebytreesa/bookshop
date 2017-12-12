@@ -1,0 +1,32 @@
+<?php $__env->startSection('title'); ?>
+Admin page
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="row" style="padding-left:100px;">
+<h1>Admin</h1>
+
+<p>Username : <?php echo Auth::user()->username; ?></p>
+<p>Email : <?php echo Auth::user()->email; ?></p>
+</div>
+<div class="col-sm-2" style="border:1px solid green; margin:10px;padding-bottom:10px;text-align:center;">
+	<a href="/admin/listUsers" ><h3>USERS</h3></a>
+</div>
+
+<div class="col-sm-2" style="border:1px solid green; margin:10px;padding-bottom:10px;text-align:center;">
+	<a href="/admin/listProducts" ><h3>PRODUCTS</h3></a>
+</div>
+<div class="col-sm-2" style="border:1px solid green; margin:10px;padding-bottom:10px;text-align:center;">
+	<a href="/admin/listAuthors" class="admin-items"> <h3>AUTHORS</h3></a>
+</div>
+<div class="col-sm-2" style="border:1px solid green;  margin:10px;padding-bottom:10px;text-align:center;">
+<a href="/admin/listBags" ><h3>BAGS</h3>
+</a>
+</div>
+<div class="col-sm-2 " style="border:1px solid green; margin:10px; padding-bottom:10px;text-align:center;">
+
+<a href="/admin/listGames" ><h3>GAMES</h3></a>
+</div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
